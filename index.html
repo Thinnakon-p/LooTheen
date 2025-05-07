@@ -1,490 +1,810 @@
 <html lang="th">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   ตารางการรักษาสิวและการดูแลผิว
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>ตารางการรักษาสิวและการดูแลผิว</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-   body {
+    /* Tailwind CSS v3.3.2 CDN build extracted and minimized for production use */
+    /* Minimal essential Tailwind CSS for this page */
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
       font-family: 'Kanit', sans-serif;
+      background: linear-gradient(to top right, #fbcfe8, #e0e7ff, #c7d2fe);
+      min-height: 100vh;
+      padding: 1rem 2rem;
+      overflow-x: hidden;
+    }
+    a {
+      color: #db2777;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #be185d;
+    }
+    h1, h2, h3, h4 {
+      margin: 0;
+    }
+    ul {
+      padding-left: 1.25rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    strong {
+      font-weight: 700;
+    }
+
+    /* Container */
+    .max-w-5xl {
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .mb-8 {
+      margin-bottom: 2rem;
+    }
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+    .mb-3 {
+      margin-bottom: 0.75rem;
+    }
+    .mt-6 {
+      margin-top: 1.5rem;
+    }
+    .mt-8 {
+      margin-top: 2rem;
+    }
+    .mt-4 {
+      margin-top: 1rem;
+    }
+    .mt-2 {
+      margin-top: 0.5rem;
+    }
+    .p-6 {
+      padding: 1.5rem;
+    }
+    .p-10 {
+      padding: 2.5rem;
+    }
+    .rounded-lg {
+      border-radius: 0.5rem;
+    }
+    .rounded-xl {
+      border-radius: 0.75rem;
+    }
+    .shadow-md {
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+    .shadow-lg {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    .border {
+      border-width: 1px;
+      border-style: solid;
+    }
+    .border-2 {
+      border-width: 2px;
+    }
+    .border-purple-300 {
+      border-color: #c4b5fd;
+    }
+    .border-pink-300 {
+      border-color: #f9a8d4;
+    }
+    .border-pink-500 {
+      border-color: #ec4899;
+    }
+    .border-red-400 {
+      border-color: #f87171;
+    }
+    .border-green-400 {
+      border-color: #4ade80;
+    }
+    .border-yellow-400 {
+      border-color: #facc15;
+    }
+    .border-indigo-400 {
+      border-color: #818cf8;
+    }
+    .border-pink-200 {
+      background-color: #fecdd3;
+    }
+    .bg-white {
+      background-color: #fff;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .text-left {
+      text-align: left;
+    }
+    .text-purple-700 {
+      color: #7c3aed;
+    }
+    .text-purple-600 {
+      color: #8b5cf6;
+    }
+    .text-purple-800 {
+      color: #6b21a8;
+    }
+    .text-pink-700 {
+      color: #be185d;
+    }
+    .text-pink-800 {
+      color: #9d174d;
+    }
+    .text-pink-500 {
+      color: #ec4899;
+    }
+    .text-pink-900 {
+      color: #831843;
+    }
+    .text-red-600 {
+      color: #dc2626;
+    }
+    .text-red-700 {
+      color: #b91c1c;
+    }
+    .text-green-700 {
+      color: #15803d;
+    }
+    .text-green-800 {
+      color: #166534;
+    }
+    .text-yellow-700 {
+      color: #b45309;
+    }
+    .text-yellow-800 {
+      color: #92400e;
+    }
+    .text-indigo-700 {
+      color: #4338ca;
+    }
+    .text-indigo-800 {
+      color: #3730a3;
+    }
+    .font-extrabold {
+      font-weight: 800;
+    }
+    .font-bold {
+      font-weight: 700;
+    }
+    .font-semibold {
+      font-weight: 600;
+    }
+    .font-medium {
+      font-weight: 500;
+    }
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+    .leading-relaxed {
+      line-height: 1.625;
+    }
+    .list-disc {
+      list-style-type: disc;
+    }
+    .list-inside {
+      list-style-position: inside;
+    }
+    .max-w-xl {
+      max-width: 36rem;
+    }
+    .max-w-4xl {
+      max-width: 56rem;
+    }
+    .max-w-full {
+      max-width: 100%;
+    }
+    .w-full {
+      width: 100%;
+    }
+    .w-20 {
+      width: 5rem;
+    }
+    .w-1\/3 {
+      width: 33.333333%;
+    }
+    .w-1\/4 {
+      width: 25%;
+    }
+    .p-3 {
+      padding: 0.75rem;
+    }
+    .rounded-full {
+      border-radius: 9999px;
+    }
+    .fixed {
+      position: fixed;
+    }
+    .top-5 {
+      top: 1.25rem;
+    }
+    .right-5 {
+      right: 1.25rem;
+    }
+    .z-40 {
+      z-index: 40;
+    }
+    .z-50 {
+      z-index: 50;
+    }
+    .overflow-y-auto {
+      overflow-y: auto;
+    }
+    .overflow-x-auto {
+      overflow-x: auto;
+    }
+    .shadow-lg {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    .cursor-pointer {
+      cursor: pointer;
+    }
+    .hover\:bg-pink-700:hover {
+      background-color: #be185d;
+    }
+    .hover\:bg-pink-600:hover {
+      background-color: #db2777;
+    }
+    .hover\:text-pink-600:hover {
+      color: #db2777;
+    }
+    .focus\:outline-none:focus {
+      outline: none;
+    }
+    .focus\:ring-2:focus {
+      box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.5);
+    }
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    /* Sidebar styles */
+    #sidebar {
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(100%);
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 20rem;
+      max-width: 100vw;
+      background-color: #fff;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+      padding: 1.5rem;
+      overflow-y: auto;
+      z-index: 40;
+    }
+    #sidebar.open {
+      transform: translateX(0);
+    }
+    #overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: opacity 0.3s ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+    }
+    #overlay.active {
+      opacity: 1;
+      pointer-events: auto;
     }
     /* Scrollbar for tables on small screens */
     .table-scroll {
       overflow-x: auto;
     }
   </style>
- </head>
- <body class="bg-gradient-to-tr from-pink-100 via-purple-100 to-indigo-100 min-h-screen p-4 md:p-8">
-  <header class="max-w-5xl mx-auto mb-8">
-   <h1 class="text-4xl font-extrabold text-purple-700 text-center mb-2 drop-shadow-md">
-    ตารางการรักษาสิวและการดูแลผิว
-   </h1>
-   <p class="text-center text-purple-600 text-lg font-medium">
-    รวมคำแนะนำเรื่องอาหารและสกินแคร์สำหรับวัยรุ่นยุคใหม่
-   </p>
+</head>
+<body>
+  <!-- Sidebar toggle button -->
+  <button
+    id="sidebarToggle"
+    aria-label="เปิด/ปิด เมนู"
+    style="position: fixed; top: 1.25rem; right: 1.25rem; z-index: 50; background-color: #db2777; color: white; padding: 0.75rem; border-radius: 9999px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); border: none; cursor: pointer;"
+  >
+    <i class="fas fa-bars" style="font-size: 1.25rem;"></i>
+  </button>
+
+  <!-- Sidebar -->
+  <aside
+    id="sidebar"
+    aria-label="เมนูด้านข้าง"
+  >
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: #db2777;">เมนู</h2>
+      <button
+        id="sidebarClose"
+        aria-label="ปิดเมนู"
+        style="color: #db2777; font-size: 2rem; font-weight: 700; background: none; border: none; cursor: pointer;"
+      >
+        &times;
+      </button>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 1rem; font-weight: 600; color: #9d174d; font-size: 1.125rem;">
+        <a href="remember_loTheen.html" style="text-decoration: none; color: inherit;">บันทึกเวลาที่ติ๊กถูก</a>
+      <a href="#daily-routine" style="text-decoration: none; color: inherit;">ตารางกิจวัตรประจำวัน</a>
+      <a href="#meal-plan" style="text-decoration: none; color: inherit;">ตารางการรับประทานอาหาร</a>
+      <a href="#avoid-food" style="text-decoration: none; color: inherit;">สิ่งที่ควรงดในช่วงรักษาสิว</a>
+      <a href="#recommended-food" style="text-decoration: none; color: inherit;">สิ่งที่ควรทานในช่วงรักษาสิว</a>
+      <a href="#reintroduction" style="text-decoration: none; color: inherit;">ระยะเวลาที่จะเริ่มทานอาหารที่งดได้</a>
+      <a href="#reminders" style="text-decoration: none; color: inherit;">ข้อควรจำ</a>
+      <a href="#skin-care-table" style="text-decoration: none; color: inherit;">ตารางการดูแลผิว 7 วัน</a>
+    </nav>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" tabindex="-1" aria-hidden="true" style="display:none;"></div>
+
+  <header class="max-w-5xl mx-auto mb-8" id="daily-routine">
+    <h1 style="font-size: 2.25rem; font-weight: 800; color: #7c3aed; text-align: center; margin-bottom: 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+      ตารางการรักษาสิวและการดูแลผิว
+    </h1>
+    <p style="text-align: center; color: #8b5cf6; font-size: 1.125rem; font-weight: 500;">
+      รวมคำแนะนำเรื่องอาหารและสกินแคร์สำหรับวัยรุ่นยุคใหม่
+    </p>
   </header>
-  <main class="max-w-5xl mx-auto space-y-12">
-   <!-- ตารางกิจวัตรประจำวัน -->
-   <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 border-2 border-purple-300">
-    <h2 class="text-3xl font-bold text-purple-700 mb-6 text-center">
-     ตารางกิจวัตรประจำวัน (ช่วงรักษาสิว)
-    </h2>
-    <ul class="list-disc list-inside space-y-3 text-purple-800 text-lg leading-relaxed">
-     <li>
-      <span class="font-semibold">
-       22:00 น. - 23:00 น.:
-      </span>
-      เตรียมตัวเข้านอน (เช่น ปิดอุปกรณ์อิเล็กทรอนิกส์, อ่านหนังสือเบาๆ)
-     </li>
-     <li>
-      <span class="font-semibold">
-       23:00 น.:
-      </span>
-      นอนหลับพักผ่อน
-     </li>
-     <li>
-      <span class="font-semibold">
-       07:00 น. - 08:00 น.:
-      </span>
-      ตื่นนอน
-     </li>
-    </ul>
-    <div class="mt-6 flex justify-center">
-     <img alt="วัยรุ่นกำลังเตรียมตัวเข้านอนในห้องนอนที่อบอุ่น มีแสงไฟนุ่มนวล" class="rounded-lg shadow-md w-full max-w-xl" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/76452baa-0749-43bc-53c3-c0f77a3d6597.jpg" width="600"/>
-    </div>
-   </section>
-   <!-- ตารางการรับประทานอาหาร -->
-   <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 border-2 border-pink-300">
-    <h2 class="text-3xl font-bold text-pink-700 mb-6 text-center">
-     ตารางการรับประทานอาหาร (เน้นช่วงรักษาสิว)
-    </h2>
-    <div class="space-y-8 text-pink-800 text-lg leading-relaxed">
-     <div>
-      <h3 class="text-2xl font-semibold mb-3 border-b-2 border-pink-400 pb-1">
-       เช้า (07:30 น. - 08:30 น.)
-      </h3>
-      <ul class="list-disc list-inside space-y-2">
-       <li>
-        เน้น: อาหารเช้าที่มีประโยชน์ เช่น โจ๊กข้าวกล้อง, ไข่ต้ม, ข้าวโอ๊ตกับผลไม้, โยเกิร์ตธรรมชาติกับธัญพืช
-       </li>
-       <li>
-        ดื่ม: น้ำเปล่า 1 แก้วหลังตื่นนอน
-       </li>
+  <main class="max-w-5xl mx-auto" style="display: flex; flex-direction: column; gap: 3rem;">
+    <!-- ตารางกิจวัตรประจำวัน -->
+    <section
+      style="background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2.5rem; border: 2px solid #c4b5fd;"
+      id="daily-routine"
+    >
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #7c3aed; margin-bottom: 1.5rem; text-align: center;">
+        ตารางกิจวัตรประจำวัน (ช่วงรักษาสิว)
+      </h2>
+      <ul style="list-style-type: disc; list-style-position: inside; color: #6b21a8; font-size: 1.125rem; line-height: 1.625; margin-bottom: 1.5rem;">
+        <li><strong>22:00 น. - 23:00 น.:</strong> เตรียมตัวเข้านอน (เช่น ปิดอุปกรณ์อิเล็กทรอนิกส์, อ่านหนังสือเบาๆ)</li>
+        <li><strong>23:00 น.:</strong> นอนหลับพักผ่อน</li>
+        <li><strong>07:00 น. - 08:00 น.:</strong> ตื่นนอน</li>
       </ul>
-      <div class="mt-4 flex justify-center">
-       <img alt="อาหารเช้าสุขภาพดีประกอบด้วยโจ๊กข้าวกล้อง ไข่ต้ม ข้าวโอ๊ตและผลไม้สดหลากสี" class="rounded-lg shadow-md w-full max-w-xl" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/0461e29d-35ea-4026-7dbc-b5b04ebd3b19.jpg" width="600"/>
+      <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+        <img
+          alt="วัยรุ่นกำลังเตรียมตัวเข้านอนในห้องนอนที่อบอุ่น มีแสงไฟนุ่มนวล"
+          style="border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 36rem; width: 100%; height: auto;"
+          height="300"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/76452baa-0749-43bc-53c3-c0f77a3d6597.jpg"
+          width="600"
+        />
       </div>
-     </div>
-     <div>
-      <h3 class="text-2xl font-semibold mb-3 border-b-2 border-pink-400 pb-1">
-       กลางวัน (12:00 น. - 13:00 น.)
-      </h3>
-      <ul class="list-disc list-inside space-y-2">
-       <li>
-        เน้น: อาหารที่ปรุงสดใหม่ เน้นผักใบเขียวและผักหลากสี, โปรตีนไม่ติดมัน (เช่น ปลา, ไก่ไม่ติดหนัง, เต้าหู้), ข้าวกล้อง
-       </li>
-       <li>
-        ดื่ม: น้ำเปล่า
-       </li>
+    </section>
+    <!-- ตารางการรับประทานอาหาร -->
+    <section
+      style="background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2.5rem; border: 2px solid #f9a8d4;"
+      id="meal-plan"
+    >
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #be185d; margin-bottom: 1.5rem; text-align: center;">
+        ตารางการรับประทานอาหาร (เน้นช่วงรักษาสิว)
+      </h2>
+      <div style="color: #9d174d; font-size: 1.125rem; line-height: 1.625; display: flex; flex-direction: column; gap: 2rem;">
+        <div>
+          <h3 style="font-size: 1.5rem; font-weight: 600; border-bottom: 2px solid #f472b6; padding-bottom: 0.25rem; margin-bottom: 0.75rem;">
+            เช้า (07:30 น. - 08:30 น.)
+          </h3>
+          <ul style="list-style-type: disc; list-style-position: inside; margin-bottom: 1rem;">
+            <li>เน้น: อาหารเช้าที่มีประโยชน์ เช่น โจ๊กข้าวกล้อง, ไข่ต้ม, ข้าวโอ๊ตกับผลไม้, โยเกิร์ตธรรมชาติกับธัญพืช</li>
+            <li>ดื่ม: น้ำเปล่า 1 แก้วหลังตื่นนอน</li>
+          </ul>
+          <div style="margin-top: 1rem; display: flex; justify-content: center;">
+            <img
+              alt="อาหารเช้าสุขภาพดีประกอบด้วยโจ๊กข้าวกล้อง ไข่ต้ม ข้าวโอ๊ตและผลไม้สดหลากสี"
+              style="border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 36rem; width: 100%; height: auto;"
+              height="300"
+              loading="lazy"
+              src="https://storage.googleapis.com/a1aa/image/0461e29d-35ea-4026-7dbc-b5b04ebd3b19.jpg"
+              width="600"
+            />
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size: 1.5rem; font-weight: 600; border-bottom: 2px solid #f472b6; padding-bottom: 0.25rem; margin-bottom: 0.75rem;">
+            กลางวัน (12:00 น. - 13:00 น.)
+          </h3>
+          <ul style="list-style-type: disc; list-style-position: inside; margin-bottom: 1rem;">
+            <li>เน้น: อาหารที่ปรุงสดใหม่ เน้นผักใบเขียวและผักหลากสี, โปรตีนไม่ติดมัน (เช่น ปลา, ไก่ไม่ติดหนัง, เต้าหู้), ข้าวกล้อง</li>
+            <li>ดื่ม: น้ำเปล่า</li>
+          </ul>
+          <div style="margin-top: 1rem; display: flex; justify-content: center;">
+            <img
+              alt="มื้อกลางวันสุขภาพดีประกอบด้วยไก่ย่าง ผักหลากสี และข้าวกล้อง"
+              style="border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 36rem; width: 100%; height: auto;"
+              height="300"
+              loading="lazy"
+              src="https://storage.googleapis.com/a1aa/image/6f95fecf-3757-4db0-b96d-fd90b1f61997.jpg"
+              width="600"
+            />
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size: 1.5rem; font-weight: 600; border-bottom: 2px solid #f472b6; padding-bottom: 0.25rem; margin-bottom: 0.75rem;">
+            เย็น (18:00 น. - 19:00 น.)
+          </h3>
+          <ul style="list-style-type: disc; list-style-position: inside; margin-bottom: 1rem;">
+            <li>เน้น: อาหารเบาๆ ย่อยง่าย คล้ายมื้อกลางวันแต่ลดปริมาณลง เน้นผักและโปรตีน</li>
+            <li>ดื่ม: น้ำเปล่า</li>
+          </ul>
+          <div style="margin-top: 1rem; display: flex; justify-content: center;">
+            <img
+              alt="มื้อเย็นเบาๆ ประกอบด้วยผักนึ่งและเต้าหู้เพื่อย่อยง่าย"
+              style="border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 36rem; width: 100%; height: auto;"
+              height="300"
+              loading="lazy"
+              src="https://storage.googleapis.com/a1aa/image/23da2f98-9be5-42ac-3d4b-22e8cf9cdff1.jpg"
+              width="600"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- สิ่งที่ควรงดในช่วงรักษาสิว -->
+    <section
+      style="background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2.5rem; border: 2px solid #f87171;"
+      id="avoid-food"
+    >
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #dc2626; margin-bottom: 1.5rem; text-align: center;">
+        สิ่งที่ควรงดในช่วงรักษาสิว
+      </h2>
+      <ul style="list-style-type: disc; list-style-position: inside; color: #b91c1c; font-size: 1.125rem; line-height: 1.625; margin-bottom: 1.5rem;">
+        <li>อาหารที่มีน้ำตาลสูง: เช่น น้ำอัดลม, ขนมหวาน, น้ำผลไม้สำเร็จรูป (ดื่มผลไม้สดแทน), ชา/กาแฟใส่น้ำตาล/นมข้นหวาน</li>
+        <li>อาหารแปรรูป: เช่น บะหมี่กึ่งสำเร็จรูป, ไส้กรอก, ลูกชิ้น, อาหารกระป๋อง</li>
+        <li>ผลิตภัณฑ์จากนม: นมวัว, ชีส (บางงานวิจัยพบว่าอาจกระตุ้นการเกิดสิวในบางคน ลองสังเกตตัวเองดูค่ะ)</li>
+        <li>อาหารทอดและอาหารมัน: เช่น ของทอดต่างๆ, หมูกรอบ, หนังไก่</li>
+        <li>อาหารเผ็ดจัด: อาจทำให้ผิวระคายเคืองและอักเสบมากขึ้นในบางคน</li>
+        <li>เครื่องดื่มแอลกอฮอล์: อาจส่งผลต่อฮอร์โมนและทำให้ผิวขาดน้ำ</li>
+        <li>อาหารที่แพ้: หากคุณสังเกตว่าทานอาหารบางชนิดแล้วสิวเห่อขึ้น ควรงดอาหารชนิดนั้น</li>
       </ul>
-      <div class="mt-4 flex justify-center">
-       <img alt="มื้อกลางวันสุขภาพดีประกอบด้วยไก่ย่าง ผักหลากสี และข้าวกล้อง" class="rounded-lg shadow-md w-full max-w-xl" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/6f95fecf-3757-4db0-b96d-fd90b1f61997.jpg" width="600"/>
+      <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+        <img
+          alt="อาหารที่ไม่ควรทานช่วงรักษาสิว เช่น น้ำอัดลม ของทอด ไส้กรอก และอาหารแปรรูป"
+          style="border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 36rem; width: 100%; height: auto;"
+          height="300"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/4d5cc105-d534-4209-f0c1-3f47f9a9b8ec.jpg"
+          width="600"
+        />
       </div>
-     </div>
-     <div>
-      <h3 class="text-2xl font-semibold mb-3 border-b-2 border-pink-400 pb-1">
-       เย็น (18:00 น. - 19:00 น.)
-      </h3>
-      <ul class="list-disc list-inside space-y-2">
-       <li>
-        เน้น: อาหารเบาๆ ย่อยง่าย คล้ายมื้อกลางวันแต่ลดปริมาณลง เน้นผักและโปรตีน
-       </li>
-       <li>
-        ดื่ม: น้ำเปล่า
-       </li>
+    </section>
+    <!-- สิ่งที่ควรทานในช่วงรักษาสิว -->
+    <section
+      style="background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2.5rem; border: 2px solid #4ade80;"
+      id="recommended-food"
+    >
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #15803d; margin-bottom: 1.5rem; text-align: center;">
+        สิ่งที่ควรทานในช่วงรักษาสิว
+      </h2>
+      <ul style="list-style-type: disc; list-style-position: inside; color: #166534; font-size: 1.125rem; line-height: 1.625; margin-bottom: 1.5rem;">
+        <li>ผักและผลไม้สด: ทานให้หลากหลายสีสัน เพื่อให้ได้วิตามินและแร่ธาตุที่จำเป็นต่อการฟื้นฟูผิว และมีใยอาหารช่วยในการขับถ่าย</li>
+        <li>โปรตีนไม่ติดมัน: ช่วยในการซ่อมแซมและสร้างเซลล์ผิวใหม่</li>
+        <li>ธัญพืชไม่ขัดสี: เช่น ข้าวกล้อง, ข้าวโอ๊ต, ควินัว มีใยอาหารสูงและช่วยรักษาระดับน้ำตาลในเลือดให้คงที่</li>
+        <li>น้ำเปล่า: ดื่มน้ำให้เพียงพอ (อย่างน้อย 8 แก้วต่อวัน) เพื่อให้ผิวชุ่มชื้นและช่วยในการขับของเสีย</li>
+        <li>อาหารที่มีกรดไขมันดี: เช่น ปลาที่มีไขมันดี (แซลมอน, ทูน่า), อะโวคาโด, ถั่วและเมล็ดพืช (ในปริมาณที่พอเหมาะ) มีส่วนช่วยลดการอักเสบ</li>
       </ul>
-      <div class="mt-4 flex justify-center">
-       <img alt="มื้อเย็นเบาๆ ประกอบด้วยผักนึ่งและเต้าหู้เพื่อย่อยง่าย" class="rounded-lg shadow-md w-full max-w-xl" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/23da2f98-9be5-42ac-3d4b-22e8cf9cdff1.jpg" width="600"/>
+      <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+        <img
+          alt="อาหารสุขภาพดีสำหรับผิว ประกอบด้วยผักสด ปลาแซลมอน อะโวคาโด และถั่ว"
+          style="border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 36rem; width: 100%; height: auto;"
+          height="300"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/2181cb86-7916-42a2-2f28-aebcbf033baf.jpg"
+          width="600"
+        />
       </div>
-     </div>
-    </div>
-   </section>
-   <!-- สิ่งที่ควรงดในช่วงรักษาสิว -->
-   <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 border-2 border-red-400">
-    <h2 class="text-3xl font-bold text-red-600 mb-6 text-center">
-     สิ่งที่ควรงดในช่วงรักษาสิว
-    </h2>
-    <ul class="list-disc list-inside space-y-3 text-red-700 text-lg leading-relaxed">
-     <li>
-      อาหารที่มีน้ำตาลสูง: เช่น น้ำอัดลม, ขนมหวาน, น้ำผลไม้สำเร็จรูป (ดื่มผลไม้สดแทน), ชา/กาแฟใส่น้ำตาล/นมข้นหวาน
-     </li>
-     <li>
-      อาหารแปรรูป: เช่น บะหมี่กึ่งสำเร็จรูป, ไส้กรอก, ลูกชิ้น, อาหารกระป๋อง
-     </li>
-     <li>
-      ผลิตภัณฑ์จากนม: นมวัว, ชีส (บางงานวิจัยพบว่าอาจกระตุ้นการเกิดสิวในบางคน ลองสังเกตตัวเองดูค่ะ)
-     </li>
-     <li>
-      อาหารทอดและอาหารมัน: เช่น ของทอดต่างๆ, หมูกรอบ, หนังไก่
-     </li>
-     <li>
-      อาหารเผ็ดจัด: อาจทำให้ผิวระคายเคืองและอักเสบมากขึ้นในบางคน
-     </li>
-     <li>
-      เครื่องดื่มแอลกอฮอล์: อาจส่งผลต่อฮอร์โมนและทำให้ผิวขาดน้ำ
-     </li>
-     <li>
-      อาหารที่แพ้: หากคุณสังเกตว่าทานอาหารบางชนิดแล้วสิวเห่อขึ้น ควรงดอาหารชนิดนั้น
-     </li>
-    </ul>
-    <div class="mt-6 flex justify-center">
-     <img alt="อาหารที่ไม่ควรทานช่วงรักษาสิว เช่น น้ำอัดลม ของทอด ไส้กรอก และอาหารแปรรูป" class="rounded-lg shadow-md w-full max-w-xl" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/4d5cc105-d534-4209-f0c1-3f47f9a9b8ec.jpg" width="600"/>
-    </div>
-   </section>
-   <!-- สิ่งที่ควรทานในช่วงรักษาสิว -->
-   <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 border-2 border-green-400">
-    <h2 class="text-3xl font-bold text-green-700 mb-6 text-center">
-     สิ่งที่ควรทานในช่วงรักษาสิว
-    </h2>
-    <ul class="list-disc list-inside space-y-3 text-green-800 text-lg leading-relaxed">
-     <li>
-      ผักและผลไม้สด: ทานให้หลากหลายสีสัน เพื่อให้ได้วิตามินและแร่ธาตุที่จำเป็นต่อการฟื้นฟูผิว และมีใยอาหารช่วยในการขับถ่าย
-     </li>
-     <li>
-      โปรตีนไม่ติดมัน: ช่วยในการซ่อมแซมและสร้างเซลล์ผิวใหม่
-     </li>
-     <li>
-      ธัญพืชไม่ขัดสี: เช่น ข้าวกล้อง, ข้าวโอ๊ต, ควินัว มีใยอาหารสูงและช่วยรักษาระดับน้ำตาลในเลือดให้คงที่
-     </li>
-     <li>
-      น้ำเปล่า: ดื่มน้ำให้เพียงพอ (อย่างน้อย 8 แก้วต่อวัน) เพื่อให้ผิวชุ่มชื้นและช่วยในการขับของเสีย
-     </li>
-     <li>
-      อาหารที่มีกรดไขมันดี: เช่น ปลาที่มีไขมันดี (แซลมอน, ทูน่า), อะโวคาโด, ถั่วและเมล็ดพืช (ในปริมาณที่พอเหมาะ) มีส่วนช่วยลดการอักเสบ
-     </li>
-    </ul>
-    <div class="mt-6 flex justify-center">
-     <img alt="อาหารสุขภาพดีสำหรับผิว ประกอบด้วยผักสด ปลาแซลมอน อะโวคาโด และถั่ว" class="rounded-lg shadow-md w-full max-w-xl" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/2181cb86-7916-42a2-2f28-aebcbf033baf.jpg" width="600"/>
-    </div>
-   </section>
-   <!-- ระยะเวลาที่จะเริ่มทานอาหารที่งดได้ -->
-   <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 border-2 border-yellow-400">
-    <h2 class="text-3xl font-bold text-yellow-700 mb-6 text-center">
-     ระยะเวลาที่จะเริ่มทานอาหารที่งดได้
-    </h2>
-    <p class="text-yellow-800 text-lg leading-relaxed max-w-4xl mx-auto text-center">
-     โดยทั่วไป เมื่อสิวอักเสบลดลงอย่างเห็นได้ชัด รอยแดงจางลง และผิวโดยรวมดูดีขึ้น (อาจจะประมาณ 2-3 เดือน หรือตามที่คุณสังเกตเห็นการเปลี่ยนแปลง) คุณสามารถค่อยๆ เริ่มทานอาหารที่เคยงดได้ทีละน้อย เพื่อดูว่าผิวของคุณมีปฏิกิริยาอย่างไร หากทานแล้วสิวไม่เห่อขึ้น ก็สามารถทานได้ในปริมาณที่พอเหมาะ แต่ยังคงแนะนำให้เน้นอาหารที่มีประโยชน์ต่อสุขภาพผิวเป็นหลักนะคะ
-    </p>
-    <div class="mt-6 flex justify-center">
-     <img alt="ปฏิทินแสดงช่วงเวลาประมาณ 2-3 เดือนสำหรับการฟื้นฟูผิวและเริ่มทานอาหารที่เคยงด" class="rounded-lg shadow-md w-full max-w-xl" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/4588250a-0363-4e51-2963-53ed1c2d11b0.jpg" width="600"/>
-    </div>
-   </section>
-   <!-- ข้อควรจำ -->
-   <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 border-2 border-indigo-400">
-    <h2 class="text-3xl font-bold text-indigo-700 mb-6 text-center">
-     ข้อควรจำ
-    </h2>
-    <ul class="list-disc list-inside space-y-3 text-indigo-800 text-lg leading-relaxed max-w-4xl mx-auto">
-     <li>
-      ตารางนี้เป็นเพียงตัวอย่าง คุณสามารถปรับเปลี่ยนเวลาให้เหมาะสมกับไลฟ์สไตล์ของคุณได้ สิ่งสำคัญคือการนอนหลับให้เพียงพออย่างสม่ำเสมอ และรับประทานอาหารที่มีประโยชน์ครบถ้วน
-     </li>
-     <li>
-      การสังเกตปฏิกิริยาของผิวต่ออาหารแต่ละชนิดเป็นสิ่งสำคัญ บางคนอาจจะไวต่ออาหารบางอย่างมากกว่าคนอื่น
-     </li>
-     <li>
-      หากคุณมีข้อสงสัยเพิ่มเติมเกี่ยวกับการรับประทานอาหารและการรักษาสิว ควรปรึกษาแพทย์หรือนักโภชนาการเพื่อขอคำแนะนำเฉพาะบุคคล
-     </li>
-    </ul>
-    <p class="mt-6 text-indigo-700 text-center text-xl font-semibold">
-     ขอให้การรักษาสิวของคุณได้ผลดีนะคะ!
-     <span class="text-3xl">
-      😊
-     </span>
-    </p>
-   </section>
-   <!-- ตารางการดูแลผิว 7 วัน -->
-   <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 border-2 border-pink-500">
-    <h2 class="text-3xl font-bold text-pink-700 mb-6 text-center">
-     ตารางการดูแลผิว 7 วัน
-    </h2>
-    <div class="table-scroll rounded-lg shadow-md border border-pink-300">
-     <table class="min-w-full border-collapse text-pink-900">
-      <thead class="bg-pink-200 text-pink-900 font-semibold text-center">
-       <tr>
-        <th class="border border-pink-300 px-3 py-2 w-20">
-         วัน
-        </th>
-        <th class="border border-pink-300 px-3 py-2 w-1/3">
-         เช้า
-        </th>
-        <th class="border border-pink-300 px-3 py-2 w-1/3">
-         กลางคืน
-        </th>
-        <th class="border border-pink-300 px-3 py-2 w-1/4">
-         เพิ่มเติม/หมายเหตุ
-        </th>
-       </tr>
-      </thead>
-      <tbody class="text-sm md:text-base">
-       <tr class="bg-pink-50 border border-pink-300">
-        <td class="border border-pink-300 px-3 py-2 font-semibold text-center">
-         จันทร์
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. เจลล้างหน้า Tea Tree
-         <br/>
-         2. น้ำเกลือ (ถ้าผิวมัน)
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. กันแดด Ice Lerskin
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. คลีนซิ่ง Garnier ฝาชมพู
-         <br/>
-         2. เจลล้างหน้า Tea Tree
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
-        </td>
-        <td class="border border-pink-300 px-3 py-2 text-center">
-         -
-        </td>
-       </tr>
-       <tr class="bg-pink-100 border border-pink-300">
-        <td class="border border-pink-300 px-3 py-2 font-semibold text-center">
-         อังคาร
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. เจลล้างหน้า Tea Tree
-         <br/>
-         2. น้ำเกลือ (ถ้าผิวมัน)
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. กันแดด Ice Lerskin
-         <br/>
-         5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. คลีนซิ่ง Garnier ฝาชมพู
-         <br/>
-         2. เจลล้างหน้า Tea Tree
-         <br/>
-         3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)
-         <br/>
-         4. เซรั่ม Riche Gold
-         <br/>
-         5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
-        </td>
-        <td class="border border-pink-300 px-3 py-2 text-center text-pink-700 font-semibold">
-         วันใช้ BHA - สังเกตปฏิกิริยาผิว หากรู้สึกระคายเคืองมาก ลดความถี่ในการใช้
-        </td>
-       </tr>
-       <tr class="bg-pink-50 border border-pink-300">
-        <td class="border border-pink-300 px-3 py-2 font-semibold text-center">
-         พุธ
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. เจลล้างหน้า Tea Tree
-         <br/>
-         2. น้ำเกลือ (ถ้าผิวมัน)
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. กันแดด Ice Lerskin
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. คลีนซิ่ง Garnier ฝาชมพู
-         <br/>
-         2. เจลล้างหน้า Tea Tree
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
-        </td>
-        <td class="border border-pink-300 px-3 py-2 text-center">
-         - พักผิวจาก BHA
-        </td>
-       </tr>
-       <tr class="bg-pink-100 border border-pink-300">
-        <td class="border border-pink-300 px-3 py-2 font-semibold text-center">
-         พฤหัส
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. เจลล้างหน้า Tea Tree
-         <br/>
-         2. น้ำเกลือ (ถ้าผิวมัน)
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. กันแดด Ice Lerskin
-         <br/>
-         5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. คลีนซิ่ง Garnier ฝาชมพู
-         <br/>
-         2. เจลล้างหน้า Tea Tree
-         <br/>
-         3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)
-         <br/>
-         4. เซรั่ม Riche Gold
-         <br/>
-         5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
-        </td>
-        <td class="border border-pink-300 px-3 py-2 text-center text-pink-700 font-semibold">
-         วันใช้ BHA -
-        </td>
-       </tr>
-       <tr class="bg-pink-50 border border-pink-300">
-        <td class="border border-pink-300 px-3 py-2 font-semibold text-center">
-         ศุกร์
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. เจลล้างหน้า Tea Tree
-         <br/>
-         2. น้ำเกลือ (ถ้าผิวมัน)
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. กันแดด Ice Lerskin
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. คลีนซิ่ง Garnier ฝาชมพู
-         <br/>
-         2. เจลล้างหน้า Tea Tree
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
-        </td>
-        <td class="border border-pink-300 px-3 py-2 text-center">
-         - พักผิวจาก BHA
-        </td>
-       </tr>
-       <tr class="bg-pink-100 border border-pink-300">
-        <td class="border border-pink-300 px-3 py-2 font-semibold text-center">
-         เสาร์
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. เจลล้างหน้า Tea Tree
-         <br/>
-         2. น้ำเกลือ (ถ้าผิวมัน)
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. กันแดด Ice Lerskin
-         <br/>
-         5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. คลีนซิ่ง Garnier ฝาชมพู
-         <br/>
-         2. เจลล้างหน้า Tea Tree
-         <br/>
-         3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)
-         <br/>
-         4. เซรั่ม Riche Gold
-         <br/>
-         5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
-        </td>
-        <td class="border border-pink-300 px-3 py-2 text-center text-pink-700 font-semibold">
-         วันใช้ BHA -
-        </td>
-       </tr>
-       <tr class="bg-pink-50 border border-pink-300">
-        <td class="border border-pink-300 px-3 py-2 font-semibold text-center">
-         อาทิตย์
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. เจลล้างหน้า Tea Tree
-         <br/>
-         2. น้ำเกลือ (ถ้าผิวมัน)
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. กันแดด Ice Lerskin
-        </td>
-        <td class="border border-pink-300 px-3 py-2">
-         1. คลีนซิ่ง Garnier ฝาชมพู
-         <br/>
-         2. เจลล้างหน้า Tea Tree
-         <br/>
-         3. เซรั่ม Riche Gold
-         <br/>
-         4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
-        </td>
-        <td class="border border-pink-300 px-3 py-2 text-center">
-         - พักผิวจาก BHA
-        </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-    <div class="mt-8 max-w-4xl mx-auto text-pink-700 text-lg leading-relaxed space-y-4">
-     <p>
-      <i class="fas fa-check-circle text-pink-500 mr-2">
-      </i>
-      <strong>
-       ความสม่ำเสมอ:
-      </strong>
-      สิ่งสำคัญที่สุดคือการทำตามตารางนี้อย่างสม่ำเสมอ เพื่อให้ผิวได้ปรับสภาพและเห็นผลลัพธ์ที่ดี
-     </p>
-     <p>
-      <i class="fas fa-eye text-pink-500 mr-2">
-      </i>
-      <strong>
-       สังเกตผิว:
-      </strong>
-      คอยสังเกตปฏิกิริยาของผิว หากมีอาการระคายเคือง แสบ แดง หรือแห้งลอกมากเกินไป ให้ลดความถี่ในการใช้ BHA ลงเหลือ 2 ครั้งต่อสัปดาห์ หรือหยุดใช้ชั่วคราวจนกว่าผิวจะดีขึ้น
-     </p>
-     <p>
-      <i class="fas fa-dot-circle text-pink-500 mr-2">
-      </i>
-      <strong>
-       BHA เฉพาะจุด:
-      </strong>
-      ในวันที่ไม่ได้ใช้ BHA ทั่วหน้า คุณสามารถแต้ม BHA เฉพาะจุดที่เป็นสิวอุดตันได้ในช่วงเช้า (ก่อนลงเซรั่มและกันแดด) หากมีเวลา
-     </p>
-     <p>
-      <i class="fas fa-medkit text-pink-500 mr-2">
-      </i>
-      <strong>
-       ยาแต้มสิว:
-      </strong>
-      ใช้ยาแต้มสิว Clinda M หรือ Benzac เฉพาะบริเวณที่มีสิวอักเสบขึ้นใหม่เท่านั้น ไม่จำเป็นต้องทาทั่วหน้า
-     </p>
-     <p>
-      <i class="fas fa-bed text-pink-500 mr-2">
-      </i>
-      <strong>
-       การพักผ่อนและอาหาร:
-      </strong>
-      อย่าลืมให้ความสำคัญกับการพักผ่อนให้เพียงพอ ดื่มน้ำเยอะ ๆ และหลีกเลี่ยงอาหารมัน ของทอด และน้ำอัดลม เพื่อสุขภาพผิวที่ดีจากภายใน
-     </p>
-     <p>
-      <i class="fas fa-hand-paper text-pink-500 mr-2">
-      </i>
-      <strong>
-       การกดสิว:
-      </strong>
-      หากสิวอุดตันมีจำนวนมาก หัวแข็ง และไม่ยอมหลุดออกด้วย BHA การไปกดสิวที่คลินิกผิวหนังที่มีความเชี่ยวชาญสักครั้งก็เป็นทางเลือกที่ดี เพื่อช่วยให้การรักษาสิวเป็นไปได้เร็วขึ้น หลังจากนั้นก็กลับมาดูแลผิวตามแผนนี้อย่างต่อเนื่อง
-     </p>
-    </div>
-    <p class="mt-8 text-center text-pink-700 text-2xl font-semibold">
-     หวังว่าตารางนี้จะเป็นประโยชน์กับคุณนะคะ หากมีคำถามเพิ่มเติม ถามได้เลยค่ะ ยินดีช่วยเหลือเสมอ!
-     <span class="text-4xl">
-      😊
-     </span>
-    </p>
-   </section>
+    </section>
+    <!-- ระยะเวลาที่จะเริ่มทานอาหารที่งดได้ -->
+    <section
+      style="background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2.5rem; border: 2px solid #facc15;"
+      id="reintroduction"
+    >
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #b45309; margin-bottom: 1.5rem; text-align: center;">
+        ระยะเวลาที่จะเริ่มทานอาหารที่งดได้
+      </h2>
+      <p style="color: #92400e; font-size: 1.125rem; line-height: 1.625; max-width: 56rem; margin-left: auto; margin-right: auto; text-align: center;">
+        โดยทั่วไป เมื่อสิวอักเสบลดลงอย่างเห็นได้ชัด รอยแดงจางลง และผิวโดยรวมดูดีขึ้น (อาจจะประมาณ 2-3 เดือน หรือตามที่คุณสังเกตเห็นการเปลี่ยนแปลง) คุณสามารถค่อยๆ เริ่มทานอาหารที่เคยงดได้ทีละน้อย เพื่อดูว่าผิวของคุณมีปฏิกิริยาอย่างไร หากทานแล้วสิวไม่เห่อขึ้น ก็สามารถทานได้ในปริมาณที่พอเหมาะ แต่ยังคงแนะนำให้เน้นอาหารที่มีประโยชน์ต่อสุขภาพผิวเป็นหลักนะคะ
+      </p>
+      <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+        <img
+          alt="ปฏิทินแสดงช่วงเวลาประมาณ 2-3 เดือนสำหรับการฟื้นฟูผิวและเริ่มทานอาหารที่เคยงด"
+          style="border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); max-width: 36rem; width: 100%; height: auto;"
+          height="300"
+          loading="lazy"
+          src="https://storage.googleapis.com/a1aa/image/4588250a-0363-4e51-2963-53ed1c2d11b0.jpg"
+          width="600"
+        />
+      </div>
+    </section>
+    <!-- ข้อควรจำ -->
+    <section
+      style="background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2.5rem; border: 2px solid #818cf8;"
+      id="reminders"
+    >
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #4338ca; margin-bottom: 1.5rem; text-align: center;">
+        ข้อควรจำ
+      </h2>
+      <ul style="list-style-type: disc; list-style-position: inside; color: #3730a3; font-size: 1.125rem; line-height: 1.625; max-width: 56rem; margin-left: auto; margin-right: auto;">
+        <li>ตารางนี้เป็นเพียงตัวอย่าง คุณสามารถปรับเปลี่ยนเวลาให้เหมาะสมกับไลฟ์สไตล์ของคุณได้ สิ่งสำคัญคือการนอนหลับให้เพียงพออย่างสม่ำเสมอ และรับประทานอาหารที่มีประโยชน์ครบถ้วน</li>
+        <li>การสังเกตปฏิกิริยาของผิวต่ออาหารแต่ละชนิดเป็นสิ่งสำคัญ บางคนอาจจะไวต่ออาหารบางอย่างมากกว่าคนอื่น</li>
+        <li>หากคุณมีข้อสงสัยเพิ่มเติมเกี่ยวกับการรับประทานอาหารและการรักษาสิว ควรปรึกษาแพทย์หรือนักโภชนาการเพื่อขอคำแนะนำเฉพาะบุคคล</li>
+      </ul>
+      <p style="margin-top: 1.5rem; color: #4338ca; text-align: center; font-size: 1.25rem; font-weight: 700;">
+        ขอให้การรักษาสิวของคุณได้ผลดีนะคะ! <span style="font-size: 2rem;">😊</span>
+      </p>
+    </section>
+    <!-- ตารางการดูแลผิว 7 วัน -->
+    <section
+      style="background-color: white; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); padding: 2.5rem; border: 2px solid #ec4899;"
+      id="skin-care-table"
+    >
+      <h2 style="font-size: 1.875rem; font-weight: 700; color: #be185d; margin-bottom: 1.5rem; text-align: center;">
+        ตารางการดูแลผิว 7 วัน
+      </h2>
+      <div style="overflow-x: auto; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); border: 1px solid #f9a8d4;">
+        <table style="width: 100%; border-collapse: collapse; color: #831843; font-size: 1rem;">
+          <thead style="background-color: #fecdd3; font-weight: 600; text-align: center;">
+            <tr>
+              <th style="border: 1px solid #f9a8d4; padding: 0.5rem; width: 5rem;">วัน</th>
+              <th style="border: 1px solid #f9a8d4; padding: 0.5rem; width: 33%;">เช้า</th>
+              <th style="border: 1px solid #f9a8d4; padding: 0.5rem; width: 33%;">กลางคืน</th>
+              <th style="border: 1px solid #f9a8d4; padding: 0.5rem; width: 25%;">เพิ่มเติม/หมายเหตุ</th>
+            </tr>
+          </thead>
+          <tbody style="font-size: 0.875rem;">
+            <tr style="background-color: #fce7f3; border: 1px solid #f9a8d4;">
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; font-weight: 600; text-align: center;">จันทร์</td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. เจลล้างหน้า Tea Tree<br />
+                2. น้ำเกลือ (ถ้าผิวมัน)<br />
+                3. เซรั่ม Riche Gold<br />
+                4. กันแดด Ice Lerskin
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. คลีนซิ่ง Garnier ฝาชมพู<br />
+                2. เจลล้างหน้า Tea Tree<br />
+                3. เซรั่ม Riche Gold<br />
+                4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; text-align: center;">-</td>
+            </tr>
+            <tr style="background-color: #fbcfe8; border: 1px solid #f9a8d4;">
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; font-weight: 600; text-align: center;">อังคาร</td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. เจลล้างหน้า Tea Tree<br />
+                2. น้ำเกลือ (ถ้าผิวมัน)<br />
+                3. เซรั่ม Riche Gold<br />
+                4. กันแดด Ice Lerskin<br />
+                5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. คลีนซิ่ง Garnier ฝาชมพู<br />
+                2. เจลล้างหน้า Tea Tree<br />
+                3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)<br />
+                4. เซรั่ม Riche Gold<br />
+                5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; text-align: center; color: #be185d; font-weight: 600;">
+                วันใช้ BHA - สังเกตปฏิกิริยาผิว หากรู้สึกระคายเคืองมาก ลดความถี่ในการใช้
+              </td>
+            </tr>
+            <tr style="background-color: #fce7f3; border: 1px solid #f9a8d4;">
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; font-weight: 600; text-align: center;">พุธ</td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. เจลล้างหน้า Tea Tree<br />
+                2. น้ำเกลือ (ถ้าผิวมัน)<br />
+                3. เซรั่ม Riche Gold<br />
+                4. กันแดด Ice Lerskin
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. คลีนซิ่ง Garnier ฝาชมพู<br />
+                2. เจลล้างหน้า Tea Tree<br />
+                3. เซรั่ม Riche Gold<br />
+                4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; text-align: center;">- พักผิวจาก BHA</td>
+            </tr>
+            <tr style="background-color: #fbcfe8; border: 1px solid #f9a8d4;">
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; font-weight: 600; text-align: center;">พฤหัส</td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. เจลล้างหน้า Tea Tree<br />
+                2. น้ำเกลือ (ถ้าผิวมัน)<br />
+                3. เซรั่ม Riche Gold<br />
+                4. กันแดด Ice Lerskin<br />
+                5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. คลีนซิ่ง Garnier ฝาชมพู<br />
+                2. เจลล้างหน้า Tea Tree<br />
+                3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)<br />
+                4. เซรั่ม Riche Gold<br />
+                5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; text-align: center; color: #be185d; font-weight: 600;">
+                วันใช้ BHA -
+              </td>
+            </tr>
+            <tr style="background-color: #fce7f3; border: 1px solid #f9a8d4;">
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; font-weight: 600; text-align: center;">ศุกร์</td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. เจลล้างหน้า Tea Tree<br />
+                2. น้ำเกลือ (ถ้าผิวมัน)<br />
+                3. เซรั่ม Riche Gold<br />
+                4. กันแดด Ice Lerskin
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. คลีนซิ่ง Garnier ฝาชมพู<br />
+                2. เจลล้างหน้า Tea Tree<br />
+                3. เซรั่ม Riche Gold<br />
+                4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; text-align: center;">- พักผิวจาก BHA</td>
+            </tr>
+            <tr style="background-color: #fbcfe8; border: 1px solid #f9a8d4;">
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; font-weight: 600; text-align: center;">เสาร์</td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. เจลล้างหน้า Tea Tree<br />
+                2. น้ำเกลือ (ถ้าผิวมัน)<br />
+                3. เซรั่ม Riche Gold<br />
+                4. กันแดด Ice Lerskin<br />
+                5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. คลีนซิ่ง Garnier ฝาชมพู<br />
+                2. เจลล้างหน้า Tea Tree<br />
+                3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)<br />
+                4. เซรั่ม Riche Gold<br />
+                5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; text-align: center; color: #be185d; font-weight: 600;">
+                วันใช้ BHA -
+              </td>
+            </tr>
+            <tr style="background-color: #fce7f3; border: 1px solid #f9a8d4;">
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; font-weight: 600; text-align: center;">อาทิตย์</td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. เจลล้างหน้า Tea Tree<br />
+                2. น้ำเกลือ (ถ้าผิวมัน)<br />
+                3. เซรั่ม Riche Gold<br />
+                4. กันแดด Ice Lerskin
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem;">
+                1. คลีนซิ่ง Garnier ฝาชมพู<br />
+                2. เจลล้างหน้า Tea Tree<br />
+                3. เซรั่ม Riche Gold<br />
+                4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac
+              </td>
+              <td style="border: 1px solid #f9a8d4; padding: 0.5rem; text-align: center;">- พักผิวจาก BHA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top: 2rem; max-width: 56rem; margin-left: auto; margin-right: auto; color: #9d174d; font-size: 1.125rem; line-height: 1.625; display: flex; flex-direction: column; gap: 1rem;">
+        <p><i class="fas fa-check-circle" style="color: #ec4899; margin-right: 0.5rem;"></i><strong>ความสม่ำเสมอ:</strong> สิ่งสำคัญที่สุดคือการทำตามตารางนี้อย่างสม่ำเสมอ เพื่อให้ผิวได้ปรับสภาพและเห็นผลลัพธ์ที่ดี</p>
+        <p><i class="fas fa-eye" style="color: #ec4899; margin-right: 0.5rem;"></i><strong>สังเกตผิว:</strong> คอยสังเกตปฏิกิริยาของผิว หากมีอาการระคายเคือง แสบ แดง หรือแห้งลอกมากเกินไป ให้ลดความถี่ในการใช้ BHA ลงเหลือ 2 ครั้งต่อสัปดาห์ หรือหยุดใช้ชั่วคราวจนกว่าผิวจะดีขึ้น</p>
+        <p><i class="fas fa-dot-circle" style="color: #ec4899; margin-right: 0.5rem;"></i><strong>BHA เฉพาะจุด:</strong> ในวันที่ไม่ได้ใช้ BHA ทั่วหน้า คุณสามารถแต้ม BHA เฉพาะจุดที่เป็นสิวอุดตันได้ในช่วงเช้า (ก่อนลงเซรั่มและกันแดด) หากมีเวลา</p>
+        <p><i class="fas fa-medkit" style="color: #ec4899; margin-right: 0.5rem;"></i><strong>ยาแต้มสิว:</strong> ใช้ยาแต้มสิว Clinda M หรือ Benzac เฉพาะบริเวณที่มีสิวอักเสบขึ้นใหม่เท่านั้น ไม่จำเป็นต้องทาทั่วหน้า</p>
+        <p><i class="fas fa-bed" style="color: #ec4899; margin-right: 0.5rem;"></i><strong>การพักผ่อนและอาหาร:</strong> อย่าลืมให้ความสำคัญกับการพักผ่อนให้เพียงพอ ดื่มน้ำเยอะ ๆ และหลีกเลี่ยงอาหารมัน ของทอด และน้ำอัดลม เพื่อสุขภาพผิวที่ดีจากภายใน</p>
+        <p><i class="fas fa-hand-paper" style="color: #ec4899; margin-right: 0.5rem;"></i><strong>การกดสิว:</strong> หากสิวอุดตันมีจำนวนมาก หัวแข็ง และไม่ยอมหลุดออกด้วย BHA การไปกดสิวที่คลินิกผิวหนังที่มีความเชี่ยวชาญสักครั้งก็เป็นทางเลือกที่ดี เพื่อช่วยให้การรักษาสิวเป็นไปได้เร็วขึ้น หลังจากนั้นก็กลับมาดูแลผิวตามแผนนี้อย่างต่อเนื่อง</p>
+      </div>
+      <p style="margin-top: 2rem; text-align: center; color: #be185d; font-size: 1.5rem; font-weight: 700;">
+        หวังว่าตารางนี้จะเป็นประโยชน์กับคุณนะคะ หากมีคำถามเพิ่มเติม ถามได้เลยค่ะ ยินดีช่วยเหลือเสมอ!
+        <span style="font-size: 2.5rem;">😊</span>
+      </p>
+    </section>
   </main>
- </body>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const closeBtn = document.getElementById('sidebarClose');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.style.display = 'block';
+      setTimeout(() => overlay.classList.add('active'), 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      setTimeout(() => overlay.style.display = 'none', 300);
+      document.body.style.overflow = '';
+    }
+
+    toggleBtn.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+        closeSidebar();
+      }
+    });
+  </script>
+</body>
 </html>

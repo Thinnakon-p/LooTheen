@@ -1,0 +1,611 @@
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ตารางดูแลผิวรายวัน พร้อมบันทึกเวลา</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center p-4">
+  <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">
+    ตารางดูแลผิวรายวัน พร้อมบันทึกเวลา
+  </h1>
+
+  <div class="w-full max-w-5xl bg-white rounded-lg shadow-md p-4 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-4">
+      <div class="flex items-center space-x-2">
+        <label for="datePicker" class="font-semibold text-gray-700 text-lg"
+          >เลือกวันที่:</label
+        >
+        <input
+          type="date"
+          id="datePicker"
+          class="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div class="flex space-x-2">
+        <button
+          id="resetBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+        >
+          <i class="fas fa-sync-alt"></i>
+          <span>รีเซ็ตข้อมูลวันนี้</span>
+        </button>
+        <button
+          id="viewLogBtn"
+          class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+        >
+          <i class="fas fa-clock"></i>
+          <span>ดูบันทึกเวลาที่ติ๊ก</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-300 rounded-md">
+        <thead class="bg-blue-100 text-blue-900">
+          <tr>
+            <th class="border border-gray-300 px-3 py-2 text-left w-24">วัน</th>
+            <th class="border border-gray-300 px-3 py-2 text-left min-w-[180px]">
+              เช้า
+            </th>
+            <th class="border border-gray-300 px-3 py-2 text-left min-w-[180px]">
+              กลางคืน
+            </th>
+            <th class="border border-gray-300 px-3 py-2 text-left min-w-[160px]">
+              เพิ่มเติม/หมายเหตุ
+            </th>
+          </tr>
+        </thead>
+        <tbody id="routineTableBody" class="divide-y divide-gray-200">
+          <!-- Rows inserted by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal for viewing logs -->
+  <div
+    id="logModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
+    <div class="bg-white rounded-lg max-w-3xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
+      <button
+        id="closeLogModal"
+        class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold"
+        aria-label="Close modal"
+      >
+        &times;
+      </button>
+      <h2 class="text-2xl font-semibold mb-4 text-center text-gray-800">
+        บันทึกเวลาที่ติ๊กถูก
+      </h2>
+      <div id="logContent" class="text-gray-700 text-sm space-y-3 max-h-[60vh] overflow-y-auto"></div>
+      <div class="mt-6 text-center">
+        <button
+          id="clearLogsBtn"
+          class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+        >
+          ล้างบันทึกทั้งหมด
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data for each day
+    const routineData = [
+      {
+        day: "จันทร์",
+        morning: [
+          "1. เจลล้างหน้า Tea Tree",
+          "2. น้ำเกลือ (ถ้าผิวมัน)",
+          "3. เซรั่ม Riche Gold",
+          "4. กันแดด Ice Lerskin",
+        ],
+        night: [
+          "1. คลีนซิ่ง Garnier ฝาชมพู",
+          "2. เจลล้างหน้า Tea Tree",
+          "3. เซรั่ม Riche Gold",
+          "4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac",
+        ],
+        note: "-",
+      },
+      {
+        day: "อังคาร",
+        morning: [
+          "1. เจลล้างหน้า Tea Tree",
+          "2. น้ำเกลือ (ถ้าผิวมัน)",
+          "3. เซรั่ม Riche Gold",
+          "4. กันแดด Ice Lerskin",
+          "5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)",
+        ],
+        night: [
+          "1. คลีนซิ่ง Garnier ฝาชมพู",
+          "2. เจลล้างหน้า Tea Tree",
+          "3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)",
+          "4. เซรั่ม Riche Gold",
+          "5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac",
+        ],
+        note:
+          "วันใช้ BHA - สังเกตปฏิกิริยาผิว หากรู้สึกระคายเคืองมาก ลดความถี่ในการใช้",
+      },
+      {
+        day: "พุธ",
+        morning: [
+          "1. เจลล้างหน้า Tea Tree",
+          "2. น้ำเกลือ (ถ้าผิวมัน)",
+          "3. เซรั่ม Riche Gold",
+          "4. กันแดด Ice Lerskin",
+        ],
+        night: [
+          "1. คลีนซิ่ง Garnier ฝาชมพู",
+          "2. เจลล้างหน้า Tea Tree",
+          "3. เซรั่ม Riche Gold",
+          "4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac",
+        ],
+        note: "- พักผิวจาก BHA",
+      },
+      {
+        day: "พฤหัส",
+        morning: [
+          "1. เจลล้างหน้า Tea Tree",
+          "2. น้ำเกลือ (ถ้าผิวมัน)",
+          "3. เซรั่ม Riche Gold",
+          "4. กันแดด Ice Lerskin",
+          "5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)",
+        ],
+        night: [
+          "1. คลีนซิ่ง Garnier ฝาชมพู",
+          "2. เจลล้างหน้า Tea Tree",
+          "3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)",
+          "4. เซรั่ม Riche Gold",
+          "5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac",
+        ],
+        note: "วันใช้ BHA -",
+      },
+      {
+        day: "ศุกร์",
+        morning: [
+          "1. เจลล้างหน้า Tea Tree",
+          "2. น้ำเกลือ (ถ้าผิวมัน)",
+          "3. เซรั่ม Riche Gold",
+          "4. กันแดด Ice Lerskin",
+        ],
+        night: [
+          "1. คลีนซิ่ง Garnier ฝาชมพู",
+          "2. เจลล้างหน้า Tea Tree",
+          "3. เซรั่ม Riche Gold",
+          "4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac",
+        ],
+        note: "- พักผิวจาก BHA",
+      },
+      {
+        day: "เสาร์",
+        morning: [
+          "1. เจลล้างหน้า Tea Tree",
+          "2. น้ำเกลือ (ถ้าผิวมัน)",
+          "3. เซรั่ม Riche Gold",
+          "4. กันแดด Ice Lerskin",
+          "5. (ถ้ามีเวลา) แต้ม BHA Mizumi (เฉพาะสิวอุดตัน)",
+        ],
+        night: [
+          "1. คลีนซิ่ง Garnier ฝาชมพู",
+          "2. เจลล้างหน้า Tea Tree",
+          "3. BHA Mizumi (ทาทั่วหน้า เว้นรอบดวงตาและมุมปาก ทิ้งไว้ 10-15 นาที)",
+          "4. เซรั่ม Riche Gold",
+          "5. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac",
+        ],
+        note: "วันใช้ BHA -",
+      },
+      {
+        day: "อาทิตย์",
+        morning: [
+          "1. เจลล้างหน้า Tea Tree",
+          "2. น้ำเกลือ (ถ้าผิวมัน)",
+          "3. เซรั่ม Riche Gold",
+          "4. กันแดด Ice Lerskin",
+        ],
+        night: [
+          "1. คลีนซิ่ง Garnier ฝาชมพู",
+          "2. เจลล้างหน้า Tea Tree",
+          "3. เซรั่ม Riche Gold",
+          "4. (ถ้ามีสิวอักเสบใหม่) แต้ม Clinda M/Benzac",
+        ],
+        note: "- พักผิวจาก BHA",
+      },
+    ];
+
+    // Get day of week in Thai from Date object (0=Sun,...6=Sat)
+    function getThaiDay(date) {
+      const days = [
+        "อาทิตย์",
+        "จันทร์",
+        "อังคาร",
+        "พุธ",
+        "พฤหัส",
+        "ศุกร์",
+        "เสาร์",
+      ];
+      return days[date.getDay()];
+    }
+
+    // Format date to yyyy-mm-dd for input[type=date]
+    function formatDateISO(date) {
+      return date.toISOString().split("T")[0];
+    }
+
+    // Format date/time to readable Thai string
+    function formatDateTimeThai(date) {
+      const day = getThaiDay(date);
+      const d = date.getDate().toString().padStart(2, "0");
+      const m = (date.getMonth() + 1).toString().padStart(2, "0");
+      const y = date.getFullYear();
+      const h = date.getHours().toString().padStart(2, "0");
+      const min = date.getMinutes().toString().padStart(2, "0");
+      const s = date.getSeconds().toString().padStart(2, "0");
+      return `${day} ${d}/${m}/${y} เวลา ${h}:${min}:${s}`;
+    }
+
+    // Load saved checklist from localStorage
+    function loadChecklist(dateStr) {
+      const saved = localStorage.getItem("skinRoutine_" + dateStr);
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch {
+          return null;
+        }
+      }
+      return null;
+    }
+
+    // Save checklist to localStorage
+    function saveChecklist(dateStr, checklist) {
+      localStorage.setItem("skinRoutine_" + dateStr, JSON.stringify(checklist));
+    }
+
+    // Load logs from localStorage
+    function loadLogs() {
+      const saved = localStorage.getItem("skinRoutine_logs");
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch {
+          return {};
+        }
+      }
+      return {};
+    }
+
+    // Save logs to localStorage
+    function saveLogs(logs) {
+      localStorage.setItem("skinRoutine_logs", JSON.stringify(logs));
+    }
+
+    // Create checklist HTML for a list of tasks
+    function createChecklist(tasks, savedChecks, dayKey, timeOfDay) {
+      const container = document.createElement("div");
+      container.className = "flex flex-col space-y-1";
+
+      tasks.forEach((task, idx) => {
+        const id = `${dayKey}_${timeOfDay}_${idx}`;
+        const label = document.createElement("label");
+        label.className =
+          "inline-flex items-center space-x-2 cursor-pointer select-none";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className =
+          "form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-400";
+        checkbox.id = id;
+        checkbox.checked = savedChecks ? savedChecks[idx] === true : false;
+
+        const span = document.createElement("span");
+        span.textContent = task;
+        span.className = checkbox.checked ? "line-through text-gray-400" : "";
+
+        checkbox.addEventListener("change", () => {
+          savedChecks[idx] = checkbox.checked;
+          saveChecklist(dayKey, checklistState[dayKey]);
+
+          // Update line-through style
+          if (checkbox.checked) {
+            span.classList.add("line-through", "text-gray-400");
+            // Save log time
+            addLogEntry(
+              dayKey,
+              timeOfDay,
+              idx,
+              task,
+              new Date().toISOString()
+            );
+          } else {
+            span.classList.remove("line-through", "text-gray-400");
+            // Remove log time
+            removeLogEntry(dayKey, timeOfDay, idx);
+          }
+        });
+
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        container.appendChild(label);
+      });
+
+      return container;
+    }
+
+    // Add log entry for a checked item
+    function addLogEntry(dateStr, timeOfDay, idx, task, isoTime) {
+      if (!logs[dateStr]) logs[dateStr] = {};
+      if (!logs[dateStr][timeOfDay]) logs[dateStr][timeOfDay] = {};
+      logs[dateStr][timeOfDay][idx] = { task, time: isoTime };
+      saveLogs(logs);
+    }
+
+    // Remove log entry for an unchecked item
+    function removeLogEntry(dateStr, timeOfDay, idx) {
+      if (logs[dateStr] && logs[dateStr][timeOfDay]) {
+        delete logs[dateStr][timeOfDay][idx];
+        // Clean empty objects
+        if (Object.keys(logs[dateStr][timeOfDay]).length === 0) {
+          delete logs[dateStr][timeOfDay];
+        }
+        if (Object.keys(logs[dateStr]).length === 0) {
+          delete logs[dateStr];
+        }
+        saveLogs(logs);
+      }
+    }
+
+    // Render the table rows for the selected day
+    function renderTable(date) {
+      const tbody = document.getElementById("routineTableBody");
+      tbody.innerHTML = "";
+
+      // We will show 7 rows starting from the selected date (day 1, 2, 3...)
+      // Each row is a date with the routine of that weekday
+      for (let i = 0; i < 7; i++) {
+        const current = new Date(date);
+        current.setDate(date.getDate() + i);
+        const currentDayName = getThaiDay(current);
+        const data = routineData.find((d) => d.day === currentDayName);
+
+        if (!data) continue; // skip if no data for this day
+
+        const dateStr = formatDateISO(current);
+        const savedChecklist = loadChecklist(dateStr) || {
+          morning: [],
+          night: [],
+        };
+
+        // Initialize checklistState for this date if not exist
+        if (!checklistState[dateStr]) {
+          checklistState[dateStr] = {
+            morning: new Array(data.morning.length).fill(false),
+            night: new Array(data.night.length).fill(false),
+          };
+        }
+
+        // Sync saved checklist with checklistState
+        checklistState[dateStr].morning = Array.isArray(savedChecklist.morning) && savedChecklist.morning.length === data.morning.length ? savedChecklist.morning : new Array(data.morning.length).fill(false);
+        checklistState[dateStr].night = Array.isArray(savedChecklist.night) && savedChecklist.night.length === data.night.length ? savedChecklist.night : new Array(data.night.length).fill(false);
+
+        const tr = document.createElement("tr");
+        tr.className = "align-top";
+
+        // Day cell with date
+        const tdDay = document.createElement("td");
+        tdDay.className =
+          "border border-gray-300 px-3 py-2 font-semibold text-gray-700 whitespace-nowrap";
+        tdDay.innerHTML = `<div>${data.day}</div><div class="text-sm text-gray-500">${dateStr}</div>`;
+        tr.appendChild(tdDay);
+
+        // Morning routine with checklist
+        const tdMorning = document.createElement("td");
+        tdMorning.className = "border border-gray-300 px-3 py-2 align-top";
+        const morningChecklist = createChecklist(
+          data.morning,
+          checklistState[dateStr].morning,
+          dateStr,
+          "morning"
+        );
+        tdMorning.appendChild(morningChecklist);
+        tr.appendChild(tdMorning);
+
+        // Night routine with checklist
+        const tdNight = document.createElement("td");
+        tdNight.className = "border border-gray-300 px-3 py-2 align-top";
+        const nightChecklist = createChecklist(
+          data.night,
+          checklistState[dateStr].night,
+          dateStr,
+          "night"
+        );
+        tdNight.appendChild(nightChecklist);
+        tr.appendChild(tdNight);
+
+        // Note cell
+        const tdNote = document.createElement("td");
+        tdNote.className =
+          "border border-gray-300 px-3 py-2 text-gray-600 whitespace-pre-line";
+        tdNote.textContent = data.note;
+        tr.appendChild(tdNote);
+
+        tbody.appendChild(tr);
+      }
+    }
+
+    // On midnight, update the date and rerender
+    function setupMidnightUpdate() {
+      const now = new Date();
+      const nextMidnight = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 1,
+        0,
+        0,
+        0,
+        0
+      );
+      const msToMidnight = nextMidnight - now;
+      setTimeout(() => {
+        currentDate = new Date();
+        currentDateStr = formatDateISO(currentDate);
+        datePicker.value = currentDateStr;
+        renderTable(currentDate);
+        setupMidnightUpdate();
+      }, msToMidnight + 1000);
+    }
+
+    // Reset checklist for current date
+    function resetChecklistForDate(dateStr) {
+      const dayName = getThaiDay(new Date(dateStr));
+      const dataIndex = routineData.findIndex((d) => d.day === dayName);
+      if (dataIndex === -1) return;
+
+      checklistState[dateStr] = {
+        morning: new Array(routineData[dataIndex].morning.length).fill(false),
+        night: new Array(routineData[dataIndex].night.length).fill(false),
+      };
+      saveChecklist(dateStr, checklistState[dateStr]);
+      // Also remove logs for this date
+      if (logs[dateStr]) {
+        delete logs[dateStr];
+        saveLogs(logs);
+      }
+      renderTable(new Date(dateStr));
+    }
+
+    // Show logs modal with all logs
+    function showLogsModal() {
+      const modal = document.getElementById("logModal");
+      const content = document.getElementById("logContent");
+      content.innerHTML = "";
+
+      if (Object.keys(logs).length === 0) {
+        const p = document.createElement("p");
+        p.className = "text-center text-gray-500";
+        p.textContent = "ยังไม่มีบันทึกเวลาที่ติ๊กถูก";
+        content.appendChild(p);
+      } else {
+        // Sort dates ascending
+        const sortedDates = Object.keys(logs).sort();
+
+        sortedDates.forEach((dateStr) => {
+          const dayName = getThaiDay(new Date(dateStr));
+          const dayLogs = logs[dateStr];
+
+          const dateHeader = document.createElement("h3");
+          dateHeader.className =
+            "font-semibold text-lg mt-4 mb-2 border-b border-gray-300 pb-1";
+          dateHeader.textContent = `${dayName} ${dateStr}`;
+          content.appendChild(dateHeader);
+
+          ["morning", "night"].forEach((timeOfDay) => {
+            if (dayLogs[timeOfDay]) {
+              const timeHeader = document.createElement("h4");
+              timeHeader.className = "font-medium text-blue-700 mb-1";
+              timeHeader.textContent =
+                timeOfDay === "morning" ? "เช้า" : "กลางคืน";
+              content.appendChild(timeHeader);
+
+              const ul = document.createElement("ul");
+              ul.className = "list-disc list-inside space-y-1";
+
+              // Sort by idx ascending
+              const entries = Object.entries(dayLogs[timeOfDay]).sort(
+                (a, b) => a[0] - b[0]
+              );
+
+              entries.forEach(([idx, entry]) => {
+                const li = document.createElement("li");
+                const time = new Date(entry.time);
+                li.textContent = `${entry.task} - ติ๊กเมื่อ: ${formatDateTimeThai(
+                  time
+                )}`;
+                ul.appendChild(li);
+              });
+
+              content.appendChild(ul);
+            }
+          });
+        });
+      }
+
+      modal.classList.remove("hidden");
+    }
+
+    // Close logs modal
+    function closeLogsModal() {
+      document.getElementById("logModal").classList.add("hidden");
+    }
+
+    // Clear all logs
+    function clearAllLogs() {
+      if (confirm("คุณต้องการล้างบันทึกเวลาทั้งหมดหรือไม่?")) {
+        for (const dateStr in logs) {
+          delete logs[dateStr];
+        }
+        saveLogs(logs);
+        closeLogsModal();
+      }
+    }
+
+    // Global checklist state for all dates shown
+    const checklistState = {};
+    // Global logs object { dateStr: { morning: { idx: {task,time} }, night: {...} } }
+    const logs = loadLogs();
+
+    // Initialize
+    const datePicker = document.getElementById("datePicker");
+    let currentDate = new Date();
+    let currentDateStr = formatDateISO(currentDate);
+    datePicker.value = currentDateStr;
+
+    datePicker.addEventListener("change", (e) => {
+      const selectedDate = new Date(e.target.value);
+      currentDate = selectedDate;
+      currentDateStr = formatDateISO(currentDate);
+      renderTable(currentDate);
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (
+        confirm(
+          `คุณต้องการรีเซ็ตข้อมูลการทำกิจกรรมของวันที่ ${currentDateStr} หรือไม่?`
+        )
+      ) {
+        resetChecklistForDate(currentDateStr);
+      }
+    });
+
+    document.getElementById("viewLogBtn").addEventListener("click", () => {
+      showLogsModal();
+    });
+
+    document.getElementById("closeLogModal").addEventListener("click", () => {
+      closeLogsModal();
+    });
+
+    document.getElementById("clearLogsBtn").addEventListener("click", () => {
+      clearAllLogs();
+    });
+
+    renderTable(currentDate);
+    setupMidnightUpdate();
+  </script>
+</body>
+</html>
